@@ -1,4 +1,5 @@
 Controle de LEDs com Temporização e Botão no Raspberry Pi Pico W
+link do video de teste: https://drive.google.com/file/d/1RaUQSDWSgJUtHV7M4YU71WE2EDgZTSkI/view?usp=drivesdk
 
 Este projeto implementa um sistema de controle de LEDs utilizando um Raspberry Pi Pico W e a ferramenta BitDogLab. O objetivo principal é gerenciar o acionamento sequencial de três LEDs a partir do pressionamento de um botão, garantindo um intervalo de tempo fixo entre cada mudança de estado. Para isso, o código utiliza um temporizador de um disparo (One-Shot Timer) que controla os LEDs de forma automática após a ativação pelo botão.
 
