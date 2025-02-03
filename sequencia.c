@@ -20,7 +20,7 @@
 
 volatile bool processando = false;  // Variável de controle para evitar múltiplas execuções
 
-// Callback do temporizador para controle dos LEDs
+// Callback do temporizador
 int64_t controle_leds(alarm_id_t id, void *user_data) {
     static int etapa = 0;
 
@@ -41,7 +41,7 @@ int64_t controle_leds(alarm_id_t id, void *user_data) {
             processando = false;  // Permite nova execução
             etapa = 0;  // Reseta a sequência
 
-            // Reativa a interrupção do botão após a conclusão da sequência
+            // Reativa a interrupção do botão depois do fim da sequencia
             gpio_set_irq_enabled(BUTTON_PIN, GPIO_IRQ_EDGE_FALL, true);
             return 0; // Finaliza o temporizador
     }
@@ -56,7 +56,7 @@ void botao_irq(uint gpio, uint32_t events) {
     if (!processando) {
         processando = true;
 
-        // Desativa a interrupção do botão para evitar novas execuções antes do fim do ciclo
+        // Desativa a interrupção do botão para evitar novas execuções 
         gpio_set_irq_enabled(BUTTON_PIN, GPIO_IRQ_EDGE_FALL, false);
 
         controle_leds(0, NULL); // Inicia a sequência de LEDs
@@ -97,7 +97,7 @@ int main()
     gpio_set_irq_enabled_with_callback(BUTTON_PIN, GPIO_IRQ_EDGE_FALL, true, &botao_irq);
 
     while (true) {
-        sleep_ms(1000);
-        printf("Aguardando botão...\n");
+        sleep_ms(1000); // repete a cada segundo
+        printf("Aguardando sinal do botão...\n");
     }
 }
